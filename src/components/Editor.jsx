@@ -1,6 +1,7 @@
 import React, { useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import AWS from "aws-sdk";
 
 function Editor({ readOnly, content, setContent }) {
   const quillRef = useRef(null);
@@ -13,7 +14,33 @@ function Editor({ readOnly, content, setContent }) {
 
     input.addEventListener("change", async () => {
       const file = input.files?.[0];
-      console.log(file);
+
+      try {
+        const name = Date.now();
+
+        AWS.config.update({
+          region: process.env.REACT_APP_AWS_REGION,
+          accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+          secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+        });
+
+        const upload = new AWS.S3.ManagedUpload({
+          params: {
+            ACL: "public-read",
+            Bucket: process.env.REACT_APP_AWS_NAME,
+            Key: `upload/${name}`,
+            Body: file,
+          },
+        });
+
+        const IMAGE_URL = await upload.promise().then((res) => res.Location);
+        const editor = quillRef.current.getEditor();
+        const range = editor.getSelection();
+
+        editor.insertEmbed(range.index, "image", IMAGE_URL);
+      } catch (error) {
+        console.log(error);
+      }
     });
   };
   const editModules = useMemo(() => {
