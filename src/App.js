@@ -1,11 +1,12 @@
 import "./App.css";
-import WritePost from "./pages/WritePost";
+import Router from "./Router";
+import WritePost from "./pages/Post";
 
 function App() {
   return (
-    <div className="App">
-      <WritePost />
-    </div>
+    <>
+      <Router />
+    </>
   );
 }
 

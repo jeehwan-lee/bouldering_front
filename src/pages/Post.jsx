@@ -1,10 +1,9 @@
 import React, { useMemo, useRef, useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Editor from "../components/Editor";
 import axios from "axios";
 
-function WritePost() {
+function Post() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -38,4 +37,4 @@ function WritePost() {
   );
 }
 
-export default WritePost;
+export default Post;
