@@ -23,7 +23,7 @@ function Main() {
     <ul>
       {postList.map((post) => (
         <ol>
-          <Link to={`/post/detail/${post.id}`}>
+          <Link to={`/post/${post.id}`}>
             {post.id}. {post.title}
           </Link>
         </ol>

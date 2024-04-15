@@ -10,7 +10,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/post" element={<Post />} />
-        <Route path="/post/detail/:id" element={<Detail />} />
+        <Route path="/post/:id" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );
