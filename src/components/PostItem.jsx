@@ -12,7 +12,7 @@ import { ChatBubbleIcon, HeartIcon } from "@radix-ui/react-icons";
 
 function PostItem() {
   return (
-    <Card mb="4">
+    <Card mb="4" style={{ cursor: "pointer" }}>
       <Flex direction="column" gap="3">
         <Flex gap="2" align="center">
           <Avatar

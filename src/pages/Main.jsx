@@ -1,8 +1,20 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Box, TextField } from "@radix-ui/themes/dist/cjs/index.js";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import {
+  Box,
+  Button,
+  Flex,
+  Popover,
+  ScrollArea,
+  TextField,
+} from "@radix-ui/themes/dist/cjs/index.js";
+import {
+  DotsHorizontalIcon,
+  DotsVerticalIcon,
+  MagnifyingGlassIcon,
+  Pencil1Icon,
+} from "@radix-ui/react-icons";
 import PostItem from "../components/PostItem";
 
 function Main() {
@@ -24,8 +36,18 @@ function Main() {
 
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <main className="flex min-h-screen flex-col items-center justify-between p-5">
         <Box width="700px">
+          <Flex justify="between" mb="4">
+            <Button>
+              <Pencil1Icon />
+              글쓰기
+            </Button>
+            <Flex gap="2" align="center">
+              <Button>로그인</Button>
+              <DotsVerticalIcon />
+            </Flex>
+          </Flex>
           <TextField.Root mb="4" size="3" placeholder="Search For the Post">
             <TextField.Slot>
               <MagnifyingGlassIcon height="16" width="16" />
@@ -37,15 +59,6 @@ function Main() {
           <PostItem />
         </Box>
       </main>
-      {/* <ul>
-        {postList.map((post) => (
-          <ol>
-            <Link to={`/post/${post.id}`}>
-              {post.id}. {post.title}
-            </Link>
-          </ol>
-        ))}
-      </ul> */}
     </>
   );
 }
